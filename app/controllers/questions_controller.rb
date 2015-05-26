@@ -15,6 +15,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    unless @question.user == current_user
+      redirect_to @question, alert: 'You can not edit this question.'
+    end
   end
 
   def create
@@ -37,8 +40,12 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
-    redirect_to questions_url, notice: 'Question was successfully destroyed.'
+    unless @question.user == current_user
+      redirect_to @question, alert: 'You can not delete this question.'
+    else
+      @question.destroy
+      redirect_to questions_url, notice: 'Question was successfully destroyed.'
+    end
   end
 
   private
