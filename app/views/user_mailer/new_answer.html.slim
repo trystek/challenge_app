@@ -5,7 +5,7 @@ p
   = 'Your question has new answer:'
   
 h4
-  = @answer.question.contents
+  = link_to @answer.question.title, question_url(@answer.question)
   
 p 
   = @answer.contents

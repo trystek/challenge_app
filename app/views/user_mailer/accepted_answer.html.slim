@@ -5,7 +5,7 @@ p
   = 'Your answer was accepted.'
   
 h4
-  = @answer.question.contents
+  = link_to @answer.question.title, question_url(@answer.question)
   
 p 
   = @answer.contents
