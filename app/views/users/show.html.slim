@@ -1,5 +1,6 @@
 .user id="user-#{@user.id}"
-  h2= @user
+  h2
+    = (@user.to_s + (@user.points >= 1000 ? '&#9733;' : '')).html_safe
 
   .questions
     h3 Questions
