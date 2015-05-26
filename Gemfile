@@ -2,8 +2,12 @@ source 'https://rubygems.org'
 
 # core
 gem 'rails', '4.1.1'
-gem 'sqlite3'
+gem 'acts_as_votable'
+gem 'carrierwave'
+gem 'certified'
 gem 'devise'
+gem 'omniauth-github'
+gem 'rmagick'
 
 # frontend
 gem 'slim-rails'
@@ -20,6 +24,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # development
 group :development do
   gem 'spring'
+  gem 'sqlite3'
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] # windows
+end
+
+# production - heroku
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 # testing
@@ -32,4 +44,3 @@ group :test do
   gem "factory_girl"
   gem "rspec-rails"
 end
-
