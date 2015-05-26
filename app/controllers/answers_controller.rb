@@ -18,8 +18,10 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.user = current_user
     @answer.question = @question
-
-    if @answer.save
+    
+    if @question.accepted_answer?
+      redirect_to question_path(@question), alert: 'Question is closed.'
+    elsif @answer.save
       redirect_to question_path(@question), notice: "Answer was successfully created."
     else
       redirect_to question_path(@question), alert: "There was an error when adding answer."
