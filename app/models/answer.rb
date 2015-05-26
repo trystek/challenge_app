@@ -4,6 +4,8 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
   
+  after_create :send_mail
+  
   def accept
     if question.accepted_answer? || question.user == user
       false
@@ -19,4 +21,12 @@ class Answer < ActiveRecord::Base
   def accepted?
     accepted
   end
+  
+  private
+  
+    def send_mail
+      unless self.user == self.question.user
+        UserMailer.new_answer(self).deliver
+      end
+    end
 end
