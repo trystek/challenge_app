@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   
+  validates :name, uniqueness: true, length: { in: 5..20 }
+  
   before_create :set_points
 
   def to_s
