@@ -7,6 +7,8 @@ header
 
   = link_to "Challenge App", root_path
   '  |
+  = link_to "Top Users", users_path
+  '  |
   - if user_signed_in?
     ' Welcome,
     = current_user
@@ -18,4 +20,3 @@ header
     = link_to "Sign in", new_user_session_path
     '  |
     = link_to "Sign up", new_user_registration_path
-

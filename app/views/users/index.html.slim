@@ -1,0 +1,12 @@
+h1 Top Users
+
+table
+  thead
+    tr
+      th Name
+      th Points
+  tbody
+    - @users.each do |user|
+      tr
+        td=user
+        td=user.points
