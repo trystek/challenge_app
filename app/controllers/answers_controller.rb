@@ -1,6 +1,18 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, :set_question
-  before_action :set_answer, only: [:like]
+  before_action :set_answer, only: [:accept, :like]
+
+  def accept
+    if @answer.user == current_user
+      redirect_to question_path(@question), alert: 'You can not accept your answer.'
+    elsif @question.accepted_answer?
+      redirect_to question_path(@question), alert: 'Question has an accepted answer.'
+    elsif @answer.accept
+      redirect_to question_path(@question), notice: "You accepted #{@answer.user}'s answer."
+    else
+      redirect_to question_path(@question), alert: 'There was an error when accept answer.'
+    end
+  end
 
   def create
     @answer = Answer.new(answer_params)

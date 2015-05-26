@@ -11,6 +11,12 @@
     - elsif answer.user != current_user
       = link_to 'Like', question_answer_like_path(answer.question, answer), method: :put
   
+  .accepted
+    - if answer.accepted?
+      ' Accepted by author
+    - elsif !answer.question.accepted_answer? && answer.question.user == current_user && answer.user != current_user
+      = link_to 'Accept', question_answer_accept_path(answer.question, answer), method: :put
+  
   .details
     '  Answered on
     = l(answer.created_at, format: :long)

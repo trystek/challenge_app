@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers, only: [:create] do
       put :like
+      put :accept
     end
   end
 
