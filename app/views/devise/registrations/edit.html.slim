@@ -16,6 +16,10 @@ h2 Edit Profile
   .field
     = f.label :password_confirmation
     = f.password_field :password_confirmation, autocomplete: "off"
+    
+  .field
+    = f.label :name
+    = f.text_field :name
 
   .field
     = f.label :current_password
@@ -25,4 +29,3 @@ h2 Edit Profile
 
   div
     = f.submit "Update"
-
