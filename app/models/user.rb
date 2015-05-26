@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   before_create :set_points
 
   def to_s
-    email
+    name
   end
   
   def add_points(value)
