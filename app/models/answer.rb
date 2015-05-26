@@ -13,6 +13,7 @@ class Answer < ActiveRecord::Base
       self.accepted = true
       if self.save
         self.user.add_points(25)
+        UserMailer.accepted_answer(self).deliver
         true
       end
     end
