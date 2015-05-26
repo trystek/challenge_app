@@ -9,7 +9,10 @@ class Answer < ActiveRecord::Base
       false
     else
       self.accepted = true
-      self.save
+      if self.save
+        self.user.add_points(25)
+        true
+      end
     end
   end
   

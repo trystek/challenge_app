@@ -7,8 +7,21 @@ class User < ActiveRecord::Base
 
   has_many :questions
   has_many :answers
+  
+  before_create :set_points
 
   def to_s
     email
   end
+  
+  def add_points(value)
+    self.points += value
+    self.save
+  end
+  
+  private
+
+    def set_points
+      self.points = 100
+    end
 end
