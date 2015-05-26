@@ -15,10 +15,14 @@ class AnswersController < ApplicationController
   end
   
   def like
-    if @answer.liked_by current_user
-      redirect_to question_path(@question), notice: "You like #{@answer.user}'s answer."
-    else
-      redirect_to question_path(@question), alert: 'There was an error when like answer.'
+    if @answer.user == current_user
+      redirect_to question_path(@question), alert: 'You can not like your answers.'
+    elsif not current_user.voted_for? @answer
+      if @answer.liked_by current_user
+        redirect_to question_path(@question), notice: "You like #{@answer.user}'s answer."
+      else
+        redirect_to question_path(@question), alert: 'There was an error when like answer.'
+      end
     end
   end
 
