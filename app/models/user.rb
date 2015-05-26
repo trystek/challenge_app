@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # :recoverable, :rememberable and :trackable
   devise :database_authenticatable, :registerable, :validatable
   acts_as_voter
+  mount_uploader :avatar, AvatarUploader
 
   has_many :questions
   has_many :answers

@@ -20,6 +20,16 @@ h2 Edit Profile
   .field
     = f.label :name
     = f.text_field :name
+    
+  .field
+    = f.label :avatar
+    = f.file_field :avatar
+    - if @user.avatar?
+      .avatar
+        = image_tag(@user.avatar_url(:thumb))
+      .remove_avatar
+        = f.check_box :remove_avatar
+        = f.label :remove_avatar
 
   .field
     = f.label :current_password
