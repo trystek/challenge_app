@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_question
+  before_action :authenticate_user!, :set_question
+  before_action :set_answer, only: [:like]
 
   def create
     @answer = Answer.new(answer_params)
@@ -13,8 +13,20 @@ class AnswersController < ApplicationController
       redirect_to question_path(@question), alert: "There was an error when adding answer."
     end
   end
+  
+  def like
+    if @answer.liked_by current_user
+      redirect_to question_path(@question), notice: "You like #{@answer.user}'s answer."
+    else
+      redirect_to question_path(@question), alert: 'There was an error when like answer.'
+    end
+  end
 
   private
+
+    def set_answer
+      @answer = Answer.find(params[:answer_id])
+    end
 
     def set_question
       @question = Question.find(params[:question_id])

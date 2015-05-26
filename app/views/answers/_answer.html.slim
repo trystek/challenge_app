@@ -1,8 +1,15 @@
 .answer id="answer-#{answer.id}"
+
   .contents= answer.contents
+  
+  .likes
+    - if answer.votes_for.size > 0
+      = answer.votes_for.size
+      ' &#10004; 
+    = link_to 'Like', question_answer_like_path(answer.question, answer), method: :put
+  
   .details
     '  Answered on
     = l(answer.created_at, format: :long)
     '  by
     = link_to answer.user, user_path(answer.user)
-
