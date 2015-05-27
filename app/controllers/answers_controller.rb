@@ -34,7 +34,10 @@ class AnswersController < ApplicationController
     elsif not current_user.voted_for? @answer
       if @answer.liked_by current_user
         @answer.user.add_points(5)
-        redirect_to question_path(@question), notice: "You like #{@answer.user}'s answer."
+        respond_to do |format|
+          format.html { redirect_to question_path(@question), notice: "You like #{@answer.user}'s answer." }
+          format.js
+        end
       else
         redirect_to question_path(@question), alert: 'There was an error when like answer.'
       end

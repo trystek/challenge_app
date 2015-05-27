@@ -4,15 +4,17 @@
     = GitHub::Markdown.render_gfm(answer.contents).html_safe
   
   .likes
-    - if answer.votes_for.size > 0
-      = answer.votes_for.size
-      ' &#10004; 
+    span class='count'
+      - if answer.votes_for.size > 0
+        = answer.votes_for.size
+        ' &#10004; 
     - if !current_user
       '
     - elsif current_user.voted_for? answer
       ' You like this
     - elsif answer.user != current_user
-      = link_to 'Like', question_answer_like_path(answer.question, answer), method: :put
+      span class='like'
+        = link_to 'Like', question_answer_like_path(answer.question, answer), method: :put, remote: true
   
   .accepted
     - if answer.accepted?
