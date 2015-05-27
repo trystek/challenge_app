@@ -8,4 +8,4 @@ h4
   = link_to @answer.question.title, question_url(@answer.question)
   
 p 
-  = @answer.contents
+  = GitHub::Markdown.render_gfm(@answer.contents).html_safe

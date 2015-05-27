@@ -3,8 +3,8 @@
 
   = render "details", question: @question
 
-  p
-    = @question.contents
+  .contents
+    = GitHub::Markdown.render_gfm(@question.contents).html_safe
 
   - if @question.user == current_user
     .links

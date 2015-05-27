@@ -1,6 +1,7 @@
 .answer id="answer-#{answer.id}"
 
-  .contents= answer.contents
+  .contents
+    = GitHub::Markdown.render_gfm(answer.contents).html_safe
   
   .likes
     - if answer.votes_for.size > 0
