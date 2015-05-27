@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
 # core
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.1'
 gem 'acts_as_votable'
 gem 'carrierwave'
 gem 'certified'
 gem 'devise'
 gem 'omniauth-github'
 gem 'rmagick'
+gem 'sucker_punch'
 
 # frontend
 gem 'slim-rails'

@@ -15,7 +15,7 @@ class Answer < ActiveRecord::Base
       self.accepted = true
       if self.save
         self.user.add_points(25)
-        UserMailer.accepted_answer(self).deliver
+        UserMailer.accepted_answer(self).deliver_later
         true
       end
     end
@@ -29,7 +29,7 @@ class Answer < ActiveRecord::Base
   
     def send_mail
       unless self.user == self.question.user
-        UserMailer.new_answer(self).deliver
+        UserMailer.new_answer(self).deliver_later
       end
     end
 end
