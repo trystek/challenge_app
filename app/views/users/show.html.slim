@@ -1,6 +1,11 @@
 .user id="user-#{@user.id}"
   h2
     = (@user.to_s + (@user.points >= 1000 ? '&#9733;' : '')).html_safe
+    
+  .avatar
+    - if @user.avatar?
+      .image
+        = link_to image_tag(@user.avatar_url(:thumb)), @user.avatar.url, target: 'blank'
 
   .questions
     h3 Questions
