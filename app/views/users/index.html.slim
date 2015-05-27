@@ -8,5 +8,5 @@ table
   tbody
     - @users.each do |user|
       tr
-        td=user
+        td=link_to user, user_path(user)
         td=user.points
